@@ -37,7 +37,9 @@ class UserController {
             
             // creo el usuario en la base de datos
             //const user = await User.create(newUser);
-            const user = await User(newUser).save();
+            const user = await User(newUser).save()
+
+            if(!user) throw "Error al buscar el usuario"
             // genero el token para el usuario creado */
             const token = setJWT({email, pass});
 
@@ -45,11 +47,11 @@ class UserController {
             const data = cleanUserInput(user._doc);
 
             // retorno la respuesta formateada correctamente enviando el token y la informacion del usuario
-            return responseSuccess(res, 200, {msg: 'Usuario creado exitosamente', data, token});
+             responseSuccess(res, 200, {msg: 'Usuario creado exitosamente', data, token});
         } catch (error) {
 
             // retorno la respuesta de error
-            return responseErrors(res, 400, 'bad Request', error);  
+            responseErrors(res, 400, 'bad Request', error)
         }
     }
 
