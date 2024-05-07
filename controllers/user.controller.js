@@ -61,7 +61,20 @@ class UserController {
     async loginUser(req, res) {
         try {
 
-            responseSuccess(res, 200, {msg: 'acceso exitoso', data:{}, token:""})
+            const { email, newpassword } = req.body
+            const user = await User.findOne({ email, active: true })
+            if(user){
+                responseSuccess(res, 200, {msg: 'acceso exitoso', data:user, token:""})
+            }else{
+                responseSuccess(res, 200, {msg: 'acceso exitoso', data:{message:"usuario no encontrado"}, token:""})
+
+            }
+
+
+
+
+
+
            /*  const { email, newpassword } = req.body
             const user = await User.findOne({ email, active: true });
             
