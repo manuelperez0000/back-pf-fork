@@ -8,7 +8,7 @@ const {
 } = process.env;
 
 module.exports = {
-    databaseName: "pfservicios",
+    databaseName: "pfservicios1000",
     port: 8000,
     auth: {
         email: "manuelperez.0000@gmail.com",
