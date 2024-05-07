@@ -60,7 +60,9 @@ class UserController {
      */
     async loginUser(req, res) {
         try {
-            const { email, newpassword } = req.body
+
+            responseSuccess(res, 200, {msg: 'acceso exitoso', data:{}, token:""})
+           /*  const { email, newpassword } = req.body
             const user = await User.findOne({ email, active: true });
             
             // verifico que el usuario exista y este activo
@@ -75,7 +77,7 @@ class UserController {
                 return responseErrors(res, 401, 'Contraseña incorrecta');
             }
 
-            // genero el token para el usuario logueado */
+            // genero el token para el usuario logueado
             const {password} = user._doc;
 
             const token = setJWT({email,pass:password});
@@ -83,11 +85,12 @@ class UserController {
             // remuevo el password de la respuesta
             const data = cleanUserInput(user._doc);
 
-            return responseSuccess(res, 200, {msg: 'acceso exitoso', data, token});
+            return responseSuccess(res, 200, {msg: 'acceso exitoso', data, token}); */
         } catch (error) {
              // retorno la respuesta de error
-             return responseErrors(res, 400, 'bad Request', error);  
-        }
+            /*  return responseErrors(res, 400, 'bad Request', error);   */
+            responseErrors(res, 400, 'bad Request', error)
+        }   
     }
 
 
